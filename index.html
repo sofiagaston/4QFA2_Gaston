@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <fieldset>
+        <legend><h3>Multiplication Table Generator (only numbers between 2 and 10)</h3></legend>
+        <form onsubmit="return generateTable()">
+            <label for="firstnum">First Number:</label>
+            <input type="number" id="firstnum" name="first" required>
+            <label for="secondnum">by Second Number:</label>
+            <input type="number" id="secondnum" name="second" required><br><br>
+            <input type="submit" value="Calculate">
+            <input type="reset" value="Reset">
+        </form>
+    </fieldset>
+
+    <table id="outputTable"></table>
+
+    <script>
+        function generateTable() {
+            var firstNumber = parseInt(document.getElementById("firstnum").value);
+            var secondNumber = parseInt(document.getElementById("secondnum").value);
+            var outputTable = document.getElementById("outputTable");
+            outputTable.innerHTML = ''; 
+
+            if (firstNumber < 2 || firstNumber > 10 || secondNumber < 2 || secondNumber > 10) {
+                alert("Please enter numbers between 2 and 10.");
+                return false;
+            }
+
+            for (var i = 1; i <= secondNumber; i++) {
+                var row = outputTable.insertRow();
+                for (var x = 1; x<= firstNumber; x++) {
+                    var cell = row.insertCell();
+                    cell.textContent = i * x;
+                }
+            }
+            return false;
+        }
+        
+    </script>
+</body>
+</html>
